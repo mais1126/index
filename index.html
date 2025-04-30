@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلة الضمائر مع البحارة الصغار بقيادة مس نبال</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@400;600&family=Times+New+Roman:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+        }
+        /* تخصيص إضافي لتحسين المظهر */
+        .btn-primary {
+            background-image: linear-gradient(to bottom right, #6ee7b7, #3b82f6);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        .btn-primary:hover {
+            background-image: linear-gradient(to bottom right, #10b981, #2563eb);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        .feedback {
+            font-size: 1.4em;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+            animation: fadeIn 1s ease, pulse 2s infinite alternate;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+        .options-container button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin: 5px;
+        }
+        .stage-button {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-image: linear-gradient(to bottom right, #f59e0b, #d946ef);
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .stage-button:hover {
+            background-image: linear-gradient(to bottom right, #ed8936, #c026d3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        .back-button {
+            margin-top: 20px;
+            background-color: #86efac;
+            color: #15803d;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            border: 2px solid #22c55e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #6ee7b7;
+            border-color: #16a34a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+       #main-screen h1{
+            line-height: 1.2;
+        }
+
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-100 to-green-100 min-h-screen flex flex-col justify-center items-center p-4">
+    <div id="main-screen" class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full text-center">
+        <h1 class="text-3xl font-semibold text-blue-700 mb-6">
+            رحلة الضمائر <br>
+            مع البحارة الصغار <br>
+            بقيادة مس نبال
+        </h1>
+        <div id="stage-selection" class="mb-6">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4">اختر المرحلة:</h2>
+            <div class="flex flex-wrap justify-center">
+                <button class="stage-button" data-stage="0">المرحلة الأولى: اكتشاف الكنز</button>
+                <button class="stage-button" data-stage="1">المرحلة الثانية: مغامرة الجزيرة</button>
+                <button class="stage-button" data-stage="2">المرحلة الثالثة: البحث عن المرساة</button>
+            </div>
+        </div>
+        <button id="explanation-button" class="mt-4 text-gray-600 hover:text-blue-700 transition duration-300">شرح الضمائر</button>
+    </div>
+
+    <div id="explanation-screen" class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full text-center hidden">
+        <h2 class="text-2xl font-semibold text-green-600 mb-4">شرح الضمائر</h2>
+        <p class="text-gray-700 mb-4">
+            الضمائر هي كلمات تحل محل الأسماء. لنتعرف عليها يا بحارنا الصغير:
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-gray-600">
+            <li><b>ضمائر المتكلم:</b> أنا (للمفرد)، نحن (للمثنى والجمع)</li>
+            <li><b>ضمائر المخاطب:</b> أنتَ (للمذكر)، أنتِ (للمؤنث)، أنتما (للمثنى)، أنتم (للجمع المذكر)، أنتن (للجمع المؤنث)</li>
+            <li><b>ضمائر الغائب:</b> هو (للمذكر)، هي (للمؤنث)، هما (للمثنى)، هم (للجمع المذكر)، هن (للجمع المؤنث)</li>
+        </ul>
+        <button id="back-to-main" class="mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out">
+            العودة إلى الشاشة الرئيسية
+        </button>
+    </div>
+
+    <div id="game-screen" class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full text-center hidden">
+        <h2 id="game-title" class="text-2xl font-semibold text-purple-600 mb-4">المرحلة الأولى: اكتشاف الكنز</h2>
+        <div id="scenario" class="bg-yellow-100 border-l-4 border-yellow-500 text-gray-700 p-4 rounded-md mb-4">
+            <p id="scenario-text" class="text-lg"></p>
+        </div>
+        <div id="image-placeholder" class="mb-4 flex justify-center">
+            </div>
+        <div id="options-container" class="flex justify-center flex-wrap gap-4 mb-4">
+            </div>
+        <div id="feedback" class="mt-4 font-semibold">
+            </div>
+        <button id="next-button" class="mt-6 btn-primary hidden">
+            التالي
+        </button>
+         <button id="restart-button" class="mt-6 bg-red-400 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out hidden">
+            إعادة المرحلة
+        </button>
+        <button id="back-to-main-game" class="mt-4 back-button">العودة إلى القائمة الرئيسية</button>
+    </div>
+
+    <div id="results-screen" class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full text-center hidden">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4">النتائج</h2>
+        <p class="text-lg text-gray-700 mb-4">عدد الإجابات الصحيحة: <span id="correct-answers">0</span></p>
+        <p class="text-lg text-gray-700 mb-4">عدد الإجابات الخاطئة: <span id="wrong-answers">0</span></p>
+        <div id="result-message" class="mt-4 font-semibold text-indigo-700">
+            </div>
+        <button id="restart-game" class="mt-6 btn-primary">
+            ابدأ من جديد
+        </button>
+        <button id="back-to-main-results" class="mt-4 back-button">العودة إلى القائمة الرئيسية</button>
+    </div>
+
+    <script>
+        // العناصر
+        const mainScreen = document.getElementById('main-screen');
+        const explanationScreen = document.getElementById('explanation-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const startButton = document.getElementById('start-button'); // متغير غير مستعمل
+        const explanationButton = document.getElementById('explanation-button');
+        const backToMainButton = document.getElementById('back-to-main');
+        const nextButton = document.getElementById('next-button');
+        const restartButton = document.getElementById('restart-button');
+        const restartGameButton = document.getElementById('restart-game');
+        const gameTitle = document.getElementById('game-title');
+        const scenarioText = document.getElementById('scenario-text');
+        const optionsContainer = document.getElementById('options-container');
+        const feedback = document.getElementById('feedback');
+        const correctAnswersDisplay = document.getElementById('correct-answers');
+        const wrongAnswersDisplay = document.getElementById('wrong-answers');
+        const resultMessage = document.getElementById('result-message');
+        const imagePlaceholder = document.getElementById('image-placeholder');
+        const stageSelection = document.getElementById('stage-selection');
+        const stageButtons = document.querySelectorAll('.stage-button');
+        const backToMainGameButton = document.getElementById('back-to-main-game');
+        const backToMainResultsButton = document.getElementById('back-to-main-results');
+
+
+        // المتغيرات
+        let currentStage = 0;
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+        let gameStarted = false;
+        let currentQuestions = [];
+        let selectedAnswer = null;
+        let answeredCorrectly = true;
+
+
+        // البيانات (المراحل والأسئلة مع الصور كرتونية)
+        const stages = [
+            {
+                title: "المرحلة الأولى: اكتشاف الكنز",
+                questions: [
+                    {
+                        text: "______ يلعب بالكرة على الشاطئ.",
+                        options: ["أنا", "أنتَ", "هو"],
+                        correctAnswer: "هو",
+                        //alt: "رسم كرتوني لطفل يلعب بالكرة على الشاطئ", // غير مستعمل
+                    },
+                    {
+                        text: "______ تبني قلعة رملية رائعة.",
+                        options: ["أنا", "أنتِ", "هي"],
+                        correctAnswer: "هي",
+                       // alt: "رسم كرتوني لفتاة تبني قلعة رملية", // غير مستعمل
+                    },
+                    {
+                        text: "______ وجدا خريطة الكنز.",
+                        options: ["هما", "هم", "أنتما"],
+                        correctAnswer: "هما",
+                        //alt: "رسم كرتوني لولدين وجدا خريطة كنز", // غير مستعمل
+                    },
+                    {
+                        text: "______ يبحثون عن الكنز المدفون.",
+                        options: ["أنت", "هم", "نحن"],
+                        correctAnswer: "هم",
+                        //alt: "رسم كرتوني لأولاد يبحثون عن كنز", // غير مستعمل
+                    },
+                    {
+                        text: "______ يحتفلن بالعثور على الكنز.",
+                        options: ["أنتن", "هن", "نحن"],
+                        correctAnswer: "هن",
+                        //alt: "رسم كرتوني لبنات يحتفلن بالكنز", // غير مستعمل
+                    }
+                ],
+            },
+            {
+                title: "المرحلة الثانية: مغامرة الجزيرة",
+                questions: [
+                  {
+                    text: "______ نهبط على شاطئ الجزيرة.",
+                    options: ["نحن", "أنت", "هم"],  // تم تغيير الخيارات
+                    correctAnswer: "نحن",
+                  },
+                  {
+                    text: "______ نتسلق الجبل الشاهق.",
+                    options: ["نحن", "أنتن", "أنا"],
+                    correctAnswer: "نحن",
+                    //alt: "رسم كرتوني لأطفال يتسلقون الجبل", // غير مستعمل
+                  },
+                    {
+                        text: "______ أحب جمع الأصداف.",
+                        options: ["أنا", "أنت", "هو"],
+                        correctAnswer: "أنا",
+                        //alt: "رسم كرتوني لطفل يجمع الأصداف", // غير مستعمل
+                    },
+                    {
+                        text: "______ نرسم خريطة للجزيرة.",
+                        options: ["نحن", "أنت", "هم"],
+                        correctAnswer: "نحن",
+                       // alt: "رسم كرتوني لأطفال يرسمون خريطة", // غير مستعمل
+                    },
+                    {
+                      text: "______ نستمتع باللعب بالرمال.",
+                      options: ["نحن", "أنتن", "أنا"],
+                      correctAnswer: "نحن",
+                      //alt: "رسم كرتوني لأطفال يلعبون معا", // غير مستعمل
+                    }
+                ],
+            },
+            {
+                title: "المرحلة الثالثة: البحث عن المرساة",
+                questions: [
+                  {
+                    text: "يا صديقي، ______ تقود السفينة بمهارة!",
+                    options: ["أنا", "أنتَ", "هو"],
+                    correctAnswer: "أنتَ",
+                    //alt: "رسم كرتوني لطفل يقود سفينة", // غير مستعمل
+                  },
+                  {
+                    text: "يا صديقتي، ______ توجهيننا إلى بر الأمان.",
+                    options: ["أنا", "أنتِ", "هي"],
+                    correctAnswer: "أنتِ",
+                    //alt: "رسم كرتوني لفتاة توجه سفينة", // غير مستعمل
+                  },
+                  {
+                    text: "يا أصدقائي، ______ ترفعون المرساة بقوة.",
+                    options: ["أنتم", "هم", "نحن"],
+                    correctAnswer: "أنتم",
+                   // alt: "رسم كرتوني لأصدقاء يرفعون المرساة", // غير مستعمل
+                  },
+                  {
+                    text: "يا صديقاتي، ______ تنظفن سطح السفينة بنشاط.",
+                    options: ["أنتن", "هن", "نحن"],
+                    correctAnswer: "أنتن",
+                    //alt: "رسم كرتوني لفتيات ينظفن السفينة", // غير مستعمل
+                  },
+                  {
+                    text: "يا صديقيان، ______ تتعاونان في إصلاح الشراع.",
+                    options: ["أنتما", "هما", "نحن"],
+                    correctAnswer: "أنتما",
+                    //alt: "رسم كرتوني لصديقين يصلحان الشراع", // غير مستعمل
+                  }
+                ],
+            },
+        ];
+
+        // الأحداث
+        //startButton.addEventListener('click', startGame); // متغير غير مستعمل
+        explanationButton.addEventListener('click', showExplanation);
+        backToMainButton.addEventListener('click', showMainScreen);
+        nextButton.addEventListener('click', nextStage);
+        restartButton.addEventListener('click', restartStage);
+        restartGameButton.addEventListener('click', restartGame);
+        stageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const stage = parseInt(this.dataset.stage);
+                startGame(stage);
+            });
+        });
+        backToMainGameButton.addEventListener('click', showMainScreen);
+        backToMainResultsButton.addEventListener('click', showMainScreen);
+
+        // الدوال
+        function startGame(stage) {
+            gameStarted = true;
+            currentStage = stage;
+            mainScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            loadStage(currentStage);
+        }
+
+        function showExplanation() {
+            mainScreen.classList.add('hidden');
+            explanationScreen.classList.remove('hidden');
+        }
+
+        function showMainScreen() {
+            explanationScreen.classList.add('hidden');
+            gameScreen.classList.add('hidden');
+            resultsScreen.classList.add('hidden');
+            mainScreen.classList.remove('hidden');
+        }
+
+        function loadStage(stageIndex) {
+            if (stageIndex < stages.length) {
+                currentStage = stageIndex;
+                const stage = stages[stageIndex];
+                gameTitle.textContent = stage.title;
+                currentQuestions = stage.questions;
+                loadQuestion(0);
+                nextButton.classList.add('hidden');
+                restartButton.classList.add('hidden');
+                feedback.textContent = '';
+                answeredCorrectly = true;
+            } else {
+                showResults();
+            }
+        }
+
+        function loadQuestion(questionIndex) {
+            optionsContainer.innerHTML = '';
+            const question = currentQuestions[questionIndex];
+            scenarioText.textContent =  question.text;
+            imagePlaceholder.innerHTML =  ''; // تم حذف عرض الصورة
+            question.options.forEach(option => {
+                const optionButton = document.createElement('button');
+                optionButton.textContent = option;
+                optionButton.classList.add('bg-indigo-300', 'hover:bg-indigo-400', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded-full', 'shadow-md', 'transition', 'duration-300', 'ease-in-out');
+                optionButton.addEventListener('click', () => {
+                    checkAnswer(option);
+                });
+                optionsContainer.appendChild(optionButton);
+            });
+            selectedAnswer = null;
+            feedback.textContent = '';
+            answeredCorrectly = true;
+        }
+
+        function checkAnswer(selectedOption) {
+            if (selectedAnswer !== null) return;
+            selectedAnswer = selectedOption;
+            const currentQuestion = currentQuestions[0];
+
+            if (selectedOption === currentQuestion.correctAnswer) {
+                feedback.textContent = "أحسنت! إجابة صحيحة!";
+                feedback.style.color = "green";
+                correctAnswers++;
+                answeredCorrectly = true;
+            } else {
+                feedback.textContent = "إجابة خاطئة. حاول مرة أخرى يا بحار!";
+                feedback.style.color = "red";
+                wrongAnswers++;
+                answeredCorrectly = false;
+            }
+
+            correctAnswersDisplay.textContent = correctAnswers;
+            wrongAnswersDisplay.textContent = wrongAnswers;
+
+            if (currentQuestions.length > 1 && answeredCorrectly) {
+                nextButton.classList.remove('hidden');
+                restartButton.classList.add('hidden');
+            } else if (answeredCorrectly) {
+                nextButton.classList.remove('hidden');
+                restartButton.classList.remove('hidden');
+            }
+             else{
+                optionsContainer.innerHTML = '';
+                const question = currentQuestions[0];
+                question.options.forEach(option => {
+                const optionButton = document.createElement('button');
+                optionButton.textContent = option;
+                optionButton.classList.add('bg-indigo-300', 'hover:bg-indigo-400', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded-full', 'shadow-md', 'transition', 'duration-300', 'ease-in-out');
+                optionButton.addEventListener('click', () => {
+                    checkAnswer(option);
+                });
+                optionsContainer.appendChild(optionButton);
+            });
+                selectedAnswer = null;
+            }
+        }
+
+        function nextStage() {
+          if (currentQuestions.length > 1) {
+            currentQuestions.shift();
+            loadQuestion(0);
+          } else {
+            loadStage(currentStage + 1);
+          }
+        }
+
+        function restartStage() {
+            correctAnswers = correctAnswers - (feedback.textContent.includes("أحسنت") ? 1: 0);
+            wrongAnswers = wrongAnswers - (feedback.textContent.includes("خاطئة") ? 1: 0);
+            correctAnswersDisplay.textContent = correctAnswers;
+            wrongAnswersDisplay.textContent = wrongAnswers;
+            loadStage(currentStage);
+        }
+
+        function showResults() {
+            gameScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+            resultMessage.textContent = correctAnswers > wrongAnswers
+                ? "تهانينا أيها البحار الصغير! لقد أتممت الرحلة بنجاح!"
+                : "حاول مرة أخرى يا بحارنا الصغير، لتبحر بنجاح في المرة القادمة!";
+            correctAnswersDisplay.textContent = correctAnswers;
+            wrongAnswersDisplay.textContent = wrongAnswers;
+        }
+
+        function restartGame() {
+            gameStarted = false;
+            currentStage = 0;
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            correctAnswersDisplay.textContent = correctAnswers;
+            wrongAnswersDisplay.textContent = wrongAnswers;
+            resultsScreen.classList.add('hidden');
+            mainScreen.classList.remove('hidden');
+            loadStage(currentStage);
+        }
+    </script>
+</body>
+</html>
